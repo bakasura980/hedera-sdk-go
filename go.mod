@@ -14,4 +14,4 @@ require (
 	google.golang.org/protobuf v1.25.0
 )
 
-replace github.com/hashgraph/hedera-sdk-go/v2 => github.com/bakasura980/hedera-sdk-go/v2 v2.1.1
+replace github.com/hashgraph/hedera-sdk-go/v2 => github.com/bakasura980/hedera-sdk-go/v2 v2.1.3
