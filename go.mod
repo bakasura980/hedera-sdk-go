@@ -1,5 +1,7 @@
 module github.com/hashgraph/hedera-sdk-go/v2
 
+replace github.com/hashgraph/hedera-sdk-go/v2 => github.com/bakasura980/hedera-sdk-go/v2 v2.1.3
+
 go 1.13
 
 require (
@@ -13,5 +15,3 @@ require (
 	google.golang.org/grpc v1.32.0
 	google.golang.org/protobuf v1.25.0
 )
-
-replace github.com/hashgraph/hedera-sdk-go/v2 => github.com/bakasura980/hedera-sdk-go/v2 v2.1.3
