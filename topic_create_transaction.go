@@ -176,63 +176,6 @@ func (transaction *TopicCreateTransaction) SignWith(
 	return transaction
 }
 
-func (transaction *TopicCreateTransaction) Broadcast(
-	client *Client,
-) (TransactionResponse, error) {
-	// if client == nil || client.operator == nil {
-	// 	return TransactionResponse{}, errNoClientProvided
-	// }
-
-	if transaction.freezeError != nil {
-		return TransactionResponse{}, transaction.freezeError
-	}
-
-	if !transaction.IsFrozen() {
-		_, err := transaction.FreezeWith(client)
-		if err != nil {
-			return TransactionResponse{}, err
-		}
-	}
-
-	// transactionID := transaction.GetTransactionID()
-
-	// if !client.GetOperatorAccountID().isZero() && client.GetOperatorAccountID().equals(transactionID.AccountID) {
-	// 	transaction.SignWith(
-	// 		client.GetOperatorPublicKey(),
-	// 		client.operator.signer,
-	// 	)
-	// }
-
-	resp, err := execute(
-		client,
-		request{
-			transaction: &transaction.Transaction,
-		},
-		transaction_shouldRetry,
-		transaction_makeRequest,
-		transaction_advanceRequest,
-		transaction_getNodeAccountID,
-		topicCreateTransaction_getMethod,
-		transaction_mapResponseStatus,
-		transaction_mapResponse,
-	)
-
-	if err != nil {
-		return TransactionResponse{
-			TransactionID: transaction.GetTransactionID(),
-			NodeID:        resp.transaction.NodeID,
-		}, err
-	}
-
-	hash, err := transaction.GetTransactionHash()
-
-	return TransactionResponse{
-		TransactionID: transaction.GetTransactionID(),
-		NodeID:        resp.transaction.NodeID,
-		Hash:          hash,
-	}, nil
-}
-
 // Execute executes the Transaction with the provided client
 func (transaction *TopicCreateTransaction) Execute(
 	client *Client,

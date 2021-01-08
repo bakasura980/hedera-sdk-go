@@ -292,6 +292,18 @@ func (client *Client) SetOperator(accountID AccountID, privateKey PrivateKey) *C
 	return client
 }
 
+// SetEmptyOperator sets a nil account that could be used for
+// performing free queries or just broadcast an already signed transactions
+func (client *Client) SetEmptyOperator() *Client {
+	client.operator = &operator{
+		accountID:  AccountID{},
+		privateKey: &PrivateKey{},
+		publicKey:  PublicKey{},
+	}
+
+	return client
+}
+
 // SetOperatorWith sets that account that will, by default, be paying for
 // transactions and queries built with the client, the account's PublicKey
 // and a callback that will be invoked when a transaction needs to be signed.
