@@ -13,3 +13,5 @@ require (
 	google.golang.org/grpc v1.32.0
 	google.golang.org/protobuf v1.25.0
 )
+
+replace github.com/hashgraph/hedera-sdk-go/v2 => github.com/bakasura980/hedera-sdk-go/v2 v2.1.1-0.20210108152752-e9e2c74c83a3
