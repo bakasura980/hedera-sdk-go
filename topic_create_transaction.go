@@ -1,6 +1,7 @@
 package hedera
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/hashgraph/hedera-sdk-go/v2/proto"
@@ -180,6 +181,7 @@ func (transaction *TopicCreateTransaction) SignWith(
 func (transaction *TopicCreateTransaction) Execute(
 	client *Client,
 ) (TransactionResponse, error) {
+	fmt.Printf("Test")
 	if client == nil || client.operator == nil {
 		return TransactionResponse{}, errNoClientProvided
 	}
@@ -195,14 +197,14 @@ func (transaction *TopicCreateTransaction) Execute(
 		}
 	}
 
-	transactionID := transaction.GetTransactionID()
+	// transactionID := transaction.GetTransactionID()
 
-	if !client.GetOperatorAccountID().isZero() && client.GetOperatorAccountID().equals(transactionID.AccountID) {
-		transaction.SignWith(
-			client.GetOperatorPublicKey(),
-			client.operator.signer,
-		)
-	}
+	// if !client.GetOperatorAccountID().isZero() && client.GetOperatorAccountID().equals(transactionID.AccountID) {
+	// 	transaction.SignWith(
+	// 		client.GetOperatorPublicKey(),
+	// 		client.operator.signer,
+	// 	)
+	// }
 
 	resp, err := execute(
 		client,
