@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"crypto/sha512"
 	"encoding/hex"
+
 	"github.com/pkg/errors"
 
 	"time"
@@ -398,6 +399,10 @@ func transaction_mapResponse(request request, _ response, nodeID AccountID, prot
 
 func (transaction *Transaction) String() string {
 	return protobuf.MarshalTextString(transaction.signedTransactions[0])
+}
+
+func (transaction *Transaction) BodyBytes() []byte {
+	return transaction.signedTransactions[0].GetBodyBytes()
 }
 
 func (transaction *Transaction) ToBytes() ([]byte, error) {
