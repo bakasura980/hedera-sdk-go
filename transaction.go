@@ -219,7 +219,7 @@ func (transaction *Transaction) GetSignatures() (map[AccountID]map[*PublicKey][]
 }
 
 func (transaction *Transaction) AddSignature(publicKey PublicKey, signature []byte) *Transaction {
-	transaction.requireOneNodeAccountID()
+	//transaction.requireOneNodeAccountID()
 
 	if transaction.keyAlreadySigned(publicKey) {
 		return transaction
@@ -507,6 +507,7 @@ func (transaction *Transaction) SetNodeAccountIDs(nodeID []AccountID) *Transacti
 	if transaction.nodeIDs == nil {
 		transaction.nodeIDs = make([]AccountID, 0)
 	}
+
 	transaction.nodeIDs = append(transaction.nodeIDs, nodeID...)
 	return transaction
 }
