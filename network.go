@@ -49,6 +49,10 @@ func (network *network) SetNetwork(net map[string]AccountID) error {
 	return nil
 }
 
+func (network *network) GetNodes() []AccountID {
+	return network.getNodeAccountIDsForExecute()
+}
+
 func (network *network) getNodeAccountIDsForExecute() []AccountID {
 	sort.Sort(nodes{nodes: network.nodes})
 

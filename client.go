@@ -264,8 +264,8 @@ func (client *Client) SetNetwork(network map[string]AccountID) error {
 	return client.network.SetNetwork(network)
 }
 
-func (client *Client) GetNetwork() map[string]AccountID {
-	return client.network.network
+func (client *Client) GetNetworkNodes() []AccountID {
+	return client.network.GetNodes()
 }
 
 // SetNetwork replaces all nodes in the Client with a new set of nodes.
